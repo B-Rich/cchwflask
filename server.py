@@ -3,10 +3,14 @@ from flask import Flask, url_for
 
 app = Flask(__name__)
 
+methods = ['create', 'update', 'delete', 'health_check']
 
 @app.route('/')
 def hello():
-    return url_for('create')
+    links = []
+    for m in methods:
+        links.append("<a href='%s'>%s</a>" % (url_for(m), m))
+    return "</br>".join(links)
 
 @app.route('/create')
 def create():
