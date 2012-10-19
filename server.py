@@ -1,33 +1,19 @@
 import os
 from flask import Flask, url_for
+from provisional import Provisional, register_app
 
 app = Flask(__name__)
 
-methods = ['create', 'update', 'delete', 'health_check']
+class HelloWorld(Provisional):
 
-@app.route('/')
-def hello():
-    links = []
-    for m in methods:
-        links.append("<a href='%s'>%s</a>" % (url_for(m), m))
-    return "</br>".join(links)
+    @classmethod
+    def hello(self):
+        return "hello"
 
-@app.route('/create')
-def create():
-    return "created"
 
-@app.route('/update')
-def update():
-    return "updated"
-
-@app.route('/delete')
-def delete():
-    return "deleted"
-
-@app.route('/health-check')
-def health_check():
-    return "All your cloud are belong to us!"
+app.add_url_rule('/', 'hello', HelloWorld.hello)
+register_app(app, HelloWorld)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
