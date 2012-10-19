@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 methods = ['create', 'update', 'delete', 'health_check']
 
-class HelloWorld(Provisional):
+class ProvisionalExample(Provisional):
 
     @app.route('/')
     def print_links():
@@ -29,7 +29,7 @@ class HelloWorld(Provisional):
         return "Health check from user_class"
 
 
-register_app(app, HelloWorld)
+register_app(app, ProvisionalExample)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
