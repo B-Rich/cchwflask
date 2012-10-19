@@ -10,6 +10,9 @@ class HelloWorld(Provisional):
     def hello(self):
         return "hello"
 
+    def health_check(self):
+        return "Health check from user_class"
+
 
 app.add_url_rule('/', 'hello', HelloWorld.hello)
 register_app(app, HelloWorld)
