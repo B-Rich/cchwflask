@@ -1,8 +1,9 @@
-from flask.views import View
+from flask.views import View, request
 
 class InternalProvisional(View):
     """ CC specific scaffolding class. """
 
+    methods = ['GET', 'POST', 'DELETE']
     # initialisation for routing requests
     def __init__(self, func, data=None):
         self.func = func
@@ -20,16 +21,16 @@ class InternalProvisional(View):
     def _health_check(self):
         return self.health_check()
 
-    def dispatch_request(self, data=None):
-        if data is not None:
+    def dispatch_request(self, id_=None):
+        if id_ is not None:
             # decode json
             pass
         if self.func == 'create':
-            return self._create(data)
+            return self._create(request.form)
         elif self.func == 'update':
-            return self._update(data)
+            return self._update(id_)
         elif self.func == 'delete':
-            return self._delete(data)
+            return self._delete(id_)
         elif self.func == 'health_check':
             return self._health_check()
 
@@ -61,13 +62,13 @@ def register_app(app, class_):
         the provisional handler
 
     """
-    app.add_url_rule('/create/<data>',
+    app.add_url_rule('/create',
             view_func=class_.as_view('create',
             func='create'))
-    app.add_url_rule('/update/<data>',
+    app.add_url_rule('/update/<id_>',
             view_func=class_.as_view('update',
             func='update'))
-    app.add_url_rule('/delete/<data>',
+    app.add_url_rule('/delete/<id_>',
             view_func=class_.as_view('delete',
             func='delete'))
     app.add_url_rule('/health_check',

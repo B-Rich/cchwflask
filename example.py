@@ -4,7 +4,7 @@ from provisional import Provisional, register_app
 
 app = Flask(__name__)
 
-methods = ['create/data', 'update/data', 'delete/data', 'health_check']
+methods = ['create', 'update/id_', 'delete/id_', 'health_check']
 
 class ProvisionalExample(Provisional):
 
