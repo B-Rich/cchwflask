@@ -6,10 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    print url_for('create')
-    print url_for('update')
-    print url_for('delete')
-    print url_for('health-check')
+    return url_for('create')
 
 @app.route('/create')
 def create():
