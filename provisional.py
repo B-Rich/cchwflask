@@ -70,6 +70,6 @@ def register_app(app, class_):
     app.add_url_rule('/delete/<data>',
             view_func=class_.as_view('delete',
             func='delete'))
-    app.add_url_rule('/health-check',
+    app.add_url_rule('/health_check',
             view_func=class_.as_view('health_check',
             func='health_check'))
