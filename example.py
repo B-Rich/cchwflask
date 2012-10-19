@@ -4,7 +4,7 @@ from provisional import Provisional, register_app
 
 app = Flask(__name__)
 
-methods = ['create', 'update', 'delete', 'health_check']
+methods = ['create/data', 'update/data', 'delete/data', 'health_check']
 
 class ProvisionalExample(Provisional):
 
@@ -12,18 +12,19 @@ class ProvisionalExample(Provisional):
     def print_links():
         links = []
         for m in methods:
-            links.append("<a href='%s'>%s</a>" % (url_for(m), m))
+            links.append("<a href='%s'>%s</a>" % (m, m))
         return "</br>".join(links)
 
     # Implementations of the provisional methods
-    def create(self):
-        return "create from user_class"
+    def create(self, data):
+        return "create from user_class, data: '%s'" % data
 
-    def update(self):
-        return "update from user_class"
+    def update(self, data):
+        return "update from user_class, data: '%s'" % data
 
-    def delete(self):
-        return "delete from user_class"
+
+    def delete(self, data):
+        return "delete from user_class, data: '%s'" % data
 
     def health_check(self):
         return "Health check from user_class"
