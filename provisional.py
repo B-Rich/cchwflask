@@ -3,7 +3,7 @@ from flask.views import View, request
 class InternalProvisional(View):
     """ CC specific scaffolding class. """
 
-    methods = ['GET', 'POST', 'DELETE']
+    methods = ['GET', 'POST', 'DELETE', 'PUT']
     # initialisation for routing requests
     def __init__(self, func, data=None):
         self.func = func
