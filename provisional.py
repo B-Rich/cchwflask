@@ -1,8 +1,7 @@
 from flask.views import View
 
-
 class InternalProvisional(View):
-    """ CC specific scaffolding class.
+    """ CC specific scaffolding class. """
 
     # initialisation for routing requests
     def __init__(self, func):
@@ -33,12 +32,8 @@ class InternalProvisional(View):
 
 
 class Provisional(InternalProvisional):
-    """ Base class for Provisional.
-    Notes
-    -----
-    To work successfully, 'class_' must implement 'create', 'update', 'delete'
-    and 'health_check'.
-    """
+    """ Base class for Provisional.  """
+
     # methods to be implemented by user
     def create(self):
         pass
