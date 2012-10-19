@@ -1,12 +1,15 @@
 import os
-from flask import Flask
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello():
-    return 'Hello World!'
+    print url_for('create')
+    print url_for('update')
+    print url_for('delete')
+    print url_for('health-check')
 
 @app.route('/create')
 def create():
