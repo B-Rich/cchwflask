@@ -1,7 +1,8 @@
 import os
 from flask import Flask, url_for
+from provisional import Provisional
 
-app = Flask(__name__)
+app = Flask("HelloWorld")
 
 methods = ['create', 'update', 'delete', 'health_check']
 
@@ -28,6 +29,9 @@ def delete():
 def health_check():
     return "All your cloud are belong to us!"
 
+app.register_blueprint(Provisional)
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
+    app.debug = True
     app.run(host='0.0.0.0', port=port)
