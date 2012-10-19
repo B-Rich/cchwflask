@@ -1,20 +1,29 @@
 import os
-from flask import Flask, url_for
+from flask import Flask
 from provisional import Provisional, register_app
 
 app = Flask(__name__)
 
 class HelloWorld(Provisional):
 
-    @classmethod
+    @app.route('/')
     def hello(self):
         return "hello"
+
+    # Implementations of the provisional methods
+    def create(self):
+        return "create from user_class"
+
+    def update(self):
+        return "update from user_class"
+
+    def delete(self):
+        return "delete from user_class"
 
     def health_check(self):
         return "Health check from user_class"
 
 
-app.add_url_rule('/', 'hello', HelloWorld.hello)
 register_app(app, HelloWorld)
 
 if __name__ == '__main__':
