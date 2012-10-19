@@ -7,7 +7,7 @@ app = Flask(__name__)
 class HelloWorld(Provisional):
 
     @app.route('/')
-    def hello(self):
+    def hello():
         return "hello"
 
     # Implementations of the provisional methods
