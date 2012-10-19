@@ -12,11 +12,11 @@ class InternalProvisional(View):
     def _create(self, data):
         return self.create(data)
 
-    def _update(self, data):
-        return self.update(data)
+    def _update(self, id_, data):
+        return self.update(id_, data)
 
-    def _delete(self, data):
-        return self.delete(data)
+    def _delete(self, id_):
+        return self.delete(id_)
 
     def _health_check(self):
         return self.health_check()
@@ -26,9 +26,9 @@ class InternalProvisional(View):
             # decode json
             pass
         if self.func == 'create':
-            return self._create(request.form)
+            return self._create(request.values)
         elif self.func == 'update':
-            return self._update(id_)
+            return self._update(id_, request.values)
         elif self.func == 'delete':
             return self._delete(id_)
         elif self.func == 'health_check':
