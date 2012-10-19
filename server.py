@@ -1,14 +1,19 @@
 import os
-from flask import Flask
+from flask import Flask, url_for
 from provisional import Provisional, register_app
 
 app = Flask(__name__)
 
+methods = ['create', 'update', 'delete', 'health_check']
+
 class HelloWorld(Provisional):
 
     @app.route('/')
-    def hello():
-        return "hello"
+    def print_links():
+        links = []
+        for m in methods:
+            links.append("<a href='%s'>%s</a>" % (url_for(m), m))
+        return "</br>".join(links)
 
     # Implementations of the provisional methods
     def create(self):
